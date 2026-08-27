@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>\
-        
+        <title>Boba bash photo wall</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bubble: '#a9d8ee',
+                        bubbleInk: '#274156',
+                        surface: '#fbf6e8',
+                        surfaceAlt: '#f0e9d8',
+                        ink: '#3d2b18',
+                        inkMuted: '#6b5842',
+                        inkSoft: '#9a8064',
+                        goldenrod: '#f2c14e',
+                    },
+                    fontFamily: {
+                        display: ['Baloo 2', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+        </script>
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+        <style>
+            body { font-family: 'Poppins', sans-serif;}
+        </style>
     </head>
     <body>
+        <header class="bg-surface border-b-2 border-ink px-6 py-4 flex justify-between items-center">
+            <img src="img/logowordmark.png" alt="Boba Bash" class="h-20 my-2">
+            <span class="font-body text-inkMuted text-sm">Photo Wall</span>
+        </header>
+        <div id="wallContainer" class="p-4 flex flex-wrap gap-4"></div>
 
+        <button id="btnOpenUpload" class = "fixed bottom-6 right-6 bg-blue-500 text-white rounded-full w-14 h-14 text-2xl shadow-lg">+</button>
+
+        <div id="uploadModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center">
+            <div class="bg-white rounded-lg p-6 w-80">
+                <button id="btnCloseUpload" class="float-right text-gray-500">✕</button>
+                <h2 class="font-bold mb-4">upload your pics!</h2>
+                <label for="photoInput" class="block bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-200 mb-4">Press to upload your photos</label>
+                <input id="photoInput" type="file" accept="image/*" multiple class="mb-4 hidden">
+                <button id="btnUpload" class="bg-blue-500 text-white px-4 py-2 rounded w-full">UPLOAD</button>
+                <div id="UpStatus" class="mt-2 text-sm"></div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/wall.js"></script>
+        <script src="js/upload.js"></script>
     </body>
 </html>

@@ -9,14 +9,21 @@ async function showPhotos() {
     }
 
     for (const photo of data) {
+        const card = document.createElement("div");
+        card.className = "bg-white p-3 pb-8 shadow-lg";
+        const rotation = Math.random() * 8-4;
+        card.style.transform = "rotate("+ rotation + "deg)";
         const img = document.createElement("img");
         img.src = photo.photo_url;
-        wallContainer.appendChild(img);
+        
+        card.appendChild(img);
+        wallContainer.appendChild(card);
+
 
     }
 }
 document.getElementById("btnOpenUpload").addEventListener("click", function() {
-    document.getElementById(uploadModal).classList.toggle("hidden");
+    document.getElementById("uploadModal").classList.toggle("hidden");
 });
 document.getElementById("btnCloseUpload").addEventListener("click", function(){
     document.getElementById("uploadModal").classList.toggle("hidden")
