@@ -29,5 +29,5 @@ btnUpload.addEventListener("click", async function() {
         UpStatus.textContent = "Successful Upload!";
     }
     btnUpload.disabled = false;
-    btnUpload.classList.remove("opacity-50");
+    btnUpload.classList.remove("opacity-50"); 
 });
