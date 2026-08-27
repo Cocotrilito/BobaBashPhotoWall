@@ -37,15 +37,15 @@
         </header>
         <div id="wallContainer" class="p-4 flex flex-wrap gap-4"></div>
 
-        <button id="btnOpenUpload" class = "fixed bottom-6 right-6 bg-goldenrod text-ink rounded-full w-14 h-14 text-2xl shadow-lg">+</button>
+        <button id="btnOpenUpload" class = "fixed bottom-6 right-6 bg-goldenrod text-inkMuted rounded-full border-2 border-inkMuted hover:border-ink hover:scale-105 hover:text-ink w-14 h-14 text-2xl shadow-lg">+</button>
 
         <div id="uploadModal" class="hidden fixed inset-0 bg-inkSoft/40 flex items-center justify-center">
             <div class="bg-surface border-2 border-inkMuted p-6 w-80">
-                <button id="btnCloseUpload" class="float-right text-ink-500">✕</button>
+                <button id="btnCloseUpload" class="float-right text-ink">✕</button>
                 <h2 class="font-bold text-ink mb-4">upload your pics!</h2>
-                <label for="photoInput" class="block bg-surfaceAlt-100 border-2 border-dashed border-inkSoft rounded-lg p-6 text-center cursor-pointer hover:bg-surfaceAlt mb-4">Press to upload your photos</label>
+                <label for="photoInput" class="block bg-surface border-2 border-dashed border-inkSoft rounded-lg p-6 text-center text-ink cursor-pointer hover:bg-surfaceAlt mb-4">Press to upload your photos</label>
                 <input id="photoInput" type="file" accept="image/*" multiple class="mb-4 hidden">
-                <button id="btnUpload" class="bg-goldenrod text-ink px-4 py-2 rounded w-full">UPLOAD</button>
+                <button id="btnUpload" class="bg-goldenrod border-2 border-inkMuted text-ink px-4 py-2 rounded w-full">UPLOAD</button>
                 <div id="UpStatus" class="mt-2 text-sm"></div>
             </div>
         </div>

@@ -8,8 +8,17 @@ photoInput.addEventListener("change", function() {
 });
 
 btnUpload.addEventListener("click", async function() {
+    if (photoInput.files.length === 0) {
+        btnUpload.textContent = "Please select photos first!";
+        setTimeout(function() {
+            btnUpload.textContent = "UPLOAD";
+            document.querySelector("label[for='photoInput']").textContent = "Press to upload your photos";
+        }, 2000);
+        return;
+    }
     btnUpload.disabled = true;
-    btnUpload.classList.add("opacity-50");
+    btnUpload.classList.add("bg-inkSoft");
+    btnUpload.classList.remove("bg-goldenrod");
     btnUpload.textContent = "Uploading...";
     for (const file of photoInput.files) {
         const Filename = Date.now() + "-" + file.name;
@@ -33,7 +42,8 @@ btnUpload.addEventListener("click", async function() {
 
     }
     btnUpload.disabled = false;
-    btnUpload.classList.remove("opacity-50");
+    btnUpload.classList.remove("bg-inkSoft");
+    btnUpload.classList.add("bg-goldenrod");
     btnUpload.textContent = "Successful Upload!";
     document.querySelector("label[for='photoInput']").textContent = "Uploaded!";
     photoInput.value = "";
