@@ -45,6 +45,7 @@ btnUpload.addEventListener("click", async function() {
     btnUpload.classList.remove("bg-inkSoft");
     btnUpload.classList.add("bg-goldenrod");
     btnUpload.textContent = "Successful Upload!";
+    document.getElementById("uploadModal").classList.add("hidden");
     document.querySelector("label[for='photoInput']").textContent = "Uploaded!";
     photoInput.value = "";
     setTimeout(function() {
