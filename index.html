@@ -16,6 +16,7 @@
                         inkMuted: '#6b5842',
                         inkSoft: '#9a8064',
                         goldenrod: '#f2c14e',
+                        apply_gradient: "linear-gradient(180deg,#c0dfc6 0%,#85c5da 44%,#6fbbe2 81%,#b6dbc9 100%)"
                     },
                     fontFamily: {
                         display: ['Baloo 2', 'sans-serif'],
@@ -61,9 +62,19 @@
         </button>
 
         <div id="shareModal" class="hidden fixed inset-0 bg-inkSoft/40 flex items-center justify-center">
-            <div class="bg-surface border-2 border-inkMuted p-6 w-80">
-                <button id="btnCloseShare" class="float-right text-ink">✕</button>
-                <img id="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cocotrilito.github.io/BobaBashPhotoWall/">
+            <div class="bg-surface border-2 border-inkMuted p-6 w-80 relative">
+                <button id="btnCloseShare" class="absolute top-3 right-3 text-ink">✕</button>
+                <img id="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://cocotrilito.github.io/BobaBashPhotoWall/" class="mx-auto mb-4">
+                <div class="rounded-2xl bg-gradient-to-b from-[#c0dfc6] via-[#85c5da] to-[#6fbbe2] p-4 border-2 border-inkMuted">
+                    <h3 id="linkCopy" class="text-xs text-center text-ink break-all my-3"></h3>
+                    <button id="btnCopyLink" class="w-full flex items-center justify-center gap-2  text-ink px-4 py-2 rounded border-inkMuted hover:bg-bubble ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy Link</span>
+                    </button>
+                </div>    
             </div>
         </div>
 

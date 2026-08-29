@@ -73,5 +73,14 @@ document.getElementById("btnCloseShare").addEventListener("click", function() {
 const link = window.location.href
 const qr = document.getElementById("qr")
 qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+ link;
+const linkCopy = document.getElementById("linkCopy")
+linkCopy.textContent = link;
+document.getElementById("btnCopyLink").addEventListener("click", function() {
+  navigator.clipboard.writeText(link);
+  document.querySelector('#btnCopyLink span').textContent = "Copied!";
+  setTimeout(function() {
+    document.querySelector('#btnCopyLink span').textContent = "Copy Link";
+  }, 2000);
+});
 
 showPhotos();
