@@ -58,7 +58,20 @@ document.getElementById("btnOpenUpload").addEventListener("click", function() {
 
 
 document.getElementById("btnCloseUpload").addEventListener("click", function(){
-    document.getElementById("uploadModal").classList.toggle("hidden")
+    document.getElementById("uploadModal").classList.toggle("hidden");
 });
+
+
+
+document.getElementById("btnShare").addEventListener("click", function() {
+    document.getElementById("shareModal").classList.toggle("hidden");
+});
+document.getElementById("btnCloseShare").addEventListener("click", function() {
+    document.getElementById("shareModal").classList.toggle("hidden");
+});
+
+const link = window.location.href
+const qr = document.getElementById("qr")
+qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+ link;
 
 showPhotos();

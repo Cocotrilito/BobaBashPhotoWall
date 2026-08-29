@@ -49,6 +49,24 @@
                 <div id="UpStatus" class="mt-2 text-sm"></div>
             </div>
         </div>
+        
+        <button id="btnShare" class="fixed bottom-24 right-6 bg-bubble text-ink rounded-full w-14 h-14 flex items-center justify-center shadow-lg border-2 border-inkMuted hover:border-ink transition-transform duration-200 hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+        </button>
+
+        <div id="shareModal" class="hidden fixed inset-0 bg-inkSoft/40 flex items-center justify-center">
+            <div class="bg-surface border-2 border-inkMuted p-6 w-80">
+                <button id="btnCloseShare" class="float-right text-ink">✕</button>
+                <img id="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cocotrilito.github.io/BobaBashPhotoWall/">
+            </div>
+        </div>
+
 
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
         <script src="js/config.js"></script>
