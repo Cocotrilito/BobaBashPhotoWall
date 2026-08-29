@@ -64,7 +64,7 @@
         <div id="shareModal" class="hidden fixed inset-0 bg-inkSoft/40 flex items-center justify-center">
             <div class="bg-surface border-2 border-inkMuted p-6 w-80 relative">
                 <button id="btnCloseShare" class="absolute top-3 right-3 text-ink">✕</button>
-                <img id="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://cocotrilito.github.io/BobaBashPhotoWall/" class="mx-auto mb-4">
+                <div id="qr" class="p-4"></div>
                 <div class="rounded-2xl bg-gradient-to-b from-[#c0dfc6] via-[#85c5da] to-[#6fbbe2] p-4 border-2 border-inkMuted">
                     <h3 id="linkCopy" class="text-xs text-center text-ink break-all my-3"></h3>
                     <button id="btnCopyLink" class="w-full flex items-center justify-center gap-2  text-ink px-4 py-2 rounded border-inkMuted hover:bg-bubble ">
@@ -80,6 +80,7 @@
 
 
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
         <script src="js/config.js"></script>
         <script src="js/wall.js"></script>
         <script src="js/upload.js"></script>

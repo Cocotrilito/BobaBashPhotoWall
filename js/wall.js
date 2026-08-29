@@ -71,8 +71,26 @@ document.getElementById("btnCloseShare").addEventListener("click", function() {
 });
 
 const link = window.location.href
-const qr = document.getElementById("qr")
-qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+ link;
+
+const qrCode = new QRCodeStyling({
+    width: 250,
+    height: 250,
+    data: link,
+    dotsOptions: {
+        color: '#9a8064',
+        type: "rounded"
+    },
+    cornersSquareOptions: {
+        type: "extra-rounded",
+        color: '#6b5842'
+    },
+    backgroundOptions: {
+        color: "#fbf6e8"
+    }
+});
+
+qrCode.append(document.getElementById("qr"));
+
 const linkCopy = document.getElementById("linkCopy")
 linkCopy.textContent = link;
 document.getElementById("btnCopyLink").addEventListener("click", function() {
