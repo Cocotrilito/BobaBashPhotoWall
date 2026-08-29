@@ -2,27 +2,67 @@ const photoInput = document.getElementById("photoInput");
 const btnUpload = document.getElementById("btnUpload");
 const UpStatus= document.getElementById("UpStatus");
 
+let selectedFiles = [];
+let currentFileIndex = 0;
+let croppedBlobs = [];
+let cropper = null;
+
+function openCropperFor(index) {
+    const fileselected = selectedFiles[index];
+    const urlTemporal = URL.createObjectURL(fileselected);
+
+    const cropperImage = document.getElementById("cropperImage");
+    cropperImage.src = urlTemporal;
+
+    document.getElementById("cropModal").classList.remove("hidden");
+
+    if (cropper) {
+        cropper.destroy();
+    }
+
+    cropper = new Cropper(cropperImage, {
+        aspectRatio: 1,
+        viewMode: 1
+    });
+}
+
+
 photoInput.addEventListener("change", function() {
-    const quantity = photoInput.files.length;
-    document.querySelector("label[for='photoInput']").textContent = quantity + " photo(s) ready to upload"
+    selectedFiles = Array.from(photoInput.files);
+    croppedBlobs = [];
+    currentFileIndex = 0;
+
+    if (selectedFiles.length > 0) {
+    openCropperFor(currentFileIndex);
+   }
 });
 
-btnUpload.addEventListener("click", async function() {
-    if (photoInput.files.length === 0) {
-        btnUpload.textContent = "Please select photos first!";
-        setTimeout(function() {
-            btnUpload.textContent = "UPLOAD";
-            document.querySelector("label[for='photoInput']").textContent = "Press to upload your photos";
-        }, 2000);
-        return;
-    }
+document.getElementById("btnConfirmCrop").addEventListener("click", function() {
+    cropper.getCroppedCanvas({ width: 500, height: 500}).toBlob(function(blob) {
+      croppedBlobs.push(blob)  ;
+      currentFileIndex = currentFileIndex + 1;
+
+      if (currentFileIndex < selectedFiles.length) {
+        openCropperFor(currentFileIndex);
+      } else {
+        document.getElementById("cropModal").classList.add("hidden");
+        uploadCroppedPhotos();
+      }
+    });
+});
+
+
+
+
+async function uploadCroppedPhotos() {
     btnUpload.disabled = true;
     btnUpload.classList.add("bg-inkSoft");
     btnUpload.classList.remove("bg-goldenrod");
     btnUpload.textContent = "Uploading...";
-    for (const file of photoInput.files) {
-        const Filename = Date.now() + "-" + file.name;
-        const { data, error } = await client.storage.from("photos").upload(Filename, file);
+
+    for (const blob of croppedBlobs) {
+        const Filename = Date.now() + "-photo.jpg";
+        const { data, error } = await client.storage.from("photos").upload(Filename, blob);
         if (error) {
             console.error(error);
             continue;
@@ -30,7 +70,7 @@ btnUpload.addEventListener("click", async function() {
         const { data: urlData } = client.storage.from("photos").getPublicUrl(Filename);
 
         const { error: dbError } = await client.from("photowall").insert([
-            {photo_url: urlData.publicUrl, filename: file.name}
+            {photo_url: urlData.publicUrl, filename: Filename}
         ]);
 
         if (dbError) {
@@ -46,11 +86,8 @@ btnUpload.addEventListener("click", async function() {
     btnUpload.classList.add("bg-goldenrod");
     btnUpload.textContent = "Successful Upload!";
     document.getElementById("uploadModal").classList.add("hidden");
-    document.querySelector("label[for='photoInput']").textContent = "Uploaded!";
     photoInput.value = "";
     setTimeout(function() {
-            document.querySelector("label[for='photoInput']").textContent = "Press to upload your photos";
             btnUpload.textContent = "UPLOAD";
-            
         }, 2000);
-});
+};

@@ -7,7 +7,7 @@ function addPhotoToWall(photo) {
     card.style.transform = "rotate("+ rotation + "deg)";
 
     const photoWrapper = document.createElement("div");
-    photoWrapper.className = "relative w-48 h-48 overflow-hidden";
+    photoWrapper.className = "relative w-40 sm:w-48 md:w-48 h-48 overflow-hidden";
 
     const warmOverlay = document.createElement("div");
     warmOverlay.className = "absolute inset-0 pointer-events-none";
@@ -15,7 +15,7 @@ function addPhotoToWall(photo) {
     warmOverlay.style.mixBlendMode = "overlay";
 
     const img = document.createElement("img");
-    img.className = "w-48 object-cover block sepia-[.35] contrast-[1.05] saturate-[.95] brightness-[1.1] opacity-0 scale-95 transition-all duration-700"
+    img.className = "w-40 sm:w-48 md:w-48 object-cover block sepia-[.35] contrast-[1.05] saturate-[.95] brightness-[1.1] opacity-0 scale-95 transition-all duration-700"
     img.onload = function() {
         img.classList.remove("opacity-0", "scale-95");
         img.classList.add("opacity-100", "scale-100");
@@ -87,6 +87,7 @@ const qrCode = new QRCodeStyling({
     backgroundOptions: {
         color: "#fbf6e8"
     }
+    
 });
 
 qrCode.append(document.getElementById("qr"));
@@ -99,6 +100,18 @@ document.getElementById("btnCopyLink").addEventListener("click", function() {
   setTimeout(function() {
     document.querySelector('#btnCopyLink span').textContent = "Copy Link";
   }, 2000);
+});
+
+document.getElementById("uploadModal").addEventListener("click", function() {
+    if (event.target.id === "uploadModal") {
+        document.getElementById("uploadModal").classList.add("hidden");
+    }
+});
+
+document.getElementById("shareModal").addEventListener("click", function() {
+    if (event.target.id === "shareModal") {
+        document.getElementById("shareModal").classList.add("hidden");
+    }
 });
 
 showPhotos();

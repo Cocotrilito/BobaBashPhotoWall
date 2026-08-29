@@ -29,7 +29,22 @@
         <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
         <style>
             body { font-family: 'Poppins', sans-serif;}
+            .cropper-view-box,
+            .cropper-face {
+                border-color: #3d2b18 !important;
+            }
+            .cropper-line {
+                background-color:  #3d2b18 !important;
+            }
+            .cropper-point {
+                background-color: #f2c14e !important;
+            }
+            .cropper-crop-box {
+            border-color: #3d2b18 !important;
+            }
         </style>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body class="bg-surface">
         <header class="bg-surfaceAlt border-b-2 border-inkSoft px-6 py-4 flex justify-between items-center">
@@ -51,7 +66,7 @@
             </div>
         </div>
         
-        <button id="btnShare" class="fixed bottom-24 right-6 bg-bubble text-ink rounded-full w-14 h-14 flex items-center justify-center shadow-lg border-2 border-inkMuted hover:border-ink transition-transform duration-200 hover:scale-110">
+        <button id="btnShare" class="fixed bottom-24 right-6 bg-bubble text-inkMuted rounded-full w-14 h-14 flex items-center justify-center shadow-lg border-2 border-inkMuted hover:border-ink transition-transform duration-200 hover:scale-110 hover:text-ink">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="18" cy="5" r="3"></circle>
                 <circle cx="6" cy="12" r="3"></circle>
@@ -64,7 +79,7 @@
         <div id="shareModal" class="hidden fixed inset-0 bg-inkSoft/40 flex items-center justify-center">
             <div class="bg-surface border-2 border-inkMuted p-6 w-80 relative">
                 <button id="btnCloseShare" class="absolute top-3 right-3 text-ink">✕</button>
-                <div id="qr" class="p-4"></div>
+                <div id="qr" class="p-4 flex justify-center mb-2"></div>
                 <div class="rounded-2xl bg-gradient-to-b from-[#c0dfc6] via-[#85c5da] to-[#6fbbe2] p-4 border-2 border-inkMuted">
                     <h3 id="linkCopy" class="text-xs text-center text-ink break-all my-3"></h3>
                     <button id="btnCopyLink" class="w-full flex items-center justify-center gap-2  text-ink px-4 py-2 rounded border-inkMuted hover:bg-bubble ">
@@ -78,9 +93,24 @@
             </div>
         </div>
 
+        <div id="cropModal" class="hidden fixed inset-0 bg-inkSoft/40 flex items-center justify-center z-50">
+            <div class="bg-surface border-2 border-inkMuted p-6 w-80 relative">
+                <h2 class="font-bold text-ink mb-4">Adjust your photo</h2>
+                <div class="w-full h-64">
+                    <img id="cropperImage" class="max-w-full">
+                </div>
+                <button id="btnConfirmCrop" class="mt-4 bg-goldenrod border-2 border-inkMuted text-ink px-4 py-2 rounded w-full">Ready</button>                
+            </div>
+        </div>
+
+
+
+
 
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js"></script>
         <script src="js/config.js"></script>
         <script src="js/wall.js"></script>
         <script src="js/upload.js"></script>
