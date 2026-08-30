@@ -7,7 +7,7 @@ function addPhotoToWall(photo) {
     card.style.transform = "rotate("+ rotation + "deg)";
 
     const photoWrapper = document.createElement("div");
-    photoWrapper.className = "relative w-40 sm:w-48 md:w-48 h-48 overflow-hidden";
+    photoWrapper.className = "relative w-40 sm:w-48 md:w-48 h-40 sm:h-48 md:h-48 overflow-hidden";
 
     const warmOverlay = document.createElement("div");
     warmOverlay.className = "absolute inset-0 pointer-events-none";
@@ -15,7 +15,7 @@ function addPhotoToWall(photo) {
     warmOverlay.style.mixBlendMode = "overlay";
 
     const img = document.createElement("img");
-    img.className = "w-40 sm:w-48 md:w-48 object-cover block sepia-[.35] contrast-[1.05] saturate-[.95] brightness-[1.1] opacity-0 scale-95 transition-all duration-700"
+    img.className = "w-40 sm:w-48 md:w-48 h-40 sm:h-48 md:h-48 object-cover block sepia-[.35] contrast-[1.05] saturate-[.95] brightness-[1.1] opacity-0 scale-95 transition-all duration-700"
     img.onload = function() {
         img.classList.remove("opacity-0", "scale-95");
         img.classList.add("opacity-100", "scale-100");
