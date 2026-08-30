@@ -2,17 +2,25 @@ const wallContainer = document.getElementById("wallContainer");
 
 
 
-function addPhotoToWall(photo) {
+function addPhotoToWall(photo, size) {
+    size = size || "small";
+    const dimensions = size === "large" ? "w-80 h-80" : "w-36 sm:w-48 md:w-48 h-40 sm:h-48 md:h-48";
+
+
     const card = document.createElement("div");
-    card.className = "bg-white p-3 pb-12 shadow-lg relative cursor-pointer";
-    card.addEventListener("click", function() {
-        openDetailModal(photo);
-    });
+    card.className = "bg-white p-3 pb-12 shadow-lg relative";
     const rotation = Math.random() * 8-4;
     card.style.transform = "rotate("+ rotation + "deg)";
 
+    if (size === "small") {
+        card.classList.add("cursor-pointer");
+        card.addEventListener("click", function() {
+            openDetailModal(photo);
+        })
+    }
+
     const photoWrapper = document.createElement("div");
-    photoWrapper.className = "relative w-40 sm:w-48 md:w-48 h-40 sm:h-48 md:h-48 overflow-hidden";
+    photoWrapper.className = "relative " + dimensions + " overflow-hidden";
 
     const warmOverlay = document.createElement("div");
     warmOverlay.className = "absolute inset-0 pointer-events-none";
@@ -25,12 +33,13 @@ function addPhotoToWall(photo) {
 
 
     const img = document.createElement("img");
-    img.className = "w-40 sm:w-48 md:w-48 h-40 sm:h-48 md:h-48 object-cover block sepia-[.35] contrast-[1.05] saturate-[.95] brightness-[1.1] opacity-0 scale-95 transition-all duration-700"
+    img.className = dimensions + " object-cover block sepia-[.35] contrast-[1.05] saturate-[.95] brightness-[1.1] opacity-0 scale-95 transition-all duration-700"
     img.onload = function() {
         img.classList.remove("opacity-0", "scale-95");
         img.classList.add("opacity-100", "scale-100");
     };
     img.src = photo.photo_url;
+
     const vignette = document.createElement("div");
     vignette.className = "absolute inset-0 pointer-events-none";
     vignette.style.boxShadow = "inset 0 0 30px 10px rgba(0,0,0,0.35)";
@@ -39,13 +48,18 @@ function addPhotoToWall(photo) {
     cityLabel.className = "absolute bottom-2 left-0 right-0 text-center font-marker text-ink text-lg";
     cityLabel.textContent = photo.city;
 
-    card.appendChild(cityLabel);
     photoWrapper.appendChild(img);
     photoWrapper.appendChild(warmOverlay);
-    card.appendChild(grain);
     photoWrapper.appendChild(vignette);
     card.appendChild(photoWrapper);
-    wallContainer.appendChild(card);    
+    card.appendChild(grain);
+    card.appendChild(cityLabel);
+
+    if (size === "small") {
+        wallContainer.appendChild(card);
+    }
+    
+    return card;
 }
 
 
@@ -84,6 +98,20 @@ document.getElementById("btnShare").addEventListener("click", function() {
 document.getElementById("btnCloseShare").addEventListener("click", function() {
     document.getElementById("shareModal").classList.toggle("hidden");
 });
+
+
+document.getElementById("btnCloseDetail").addEventListener("click", function() {
+    document.getElementById("detailModal").classList.add("hidden");
+});
+
+document.getElementById("detailModal").addEventListener("click", function() {
+    if (event.target.id === "detailModal") {
+        document.getElementById("detailModal").classList.add("hidden");
+    }
+})
+
+
+
 
 const link = window.location.href
 

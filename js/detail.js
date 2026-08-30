@@ -1,20 +1,14 @@
 function openDetailModal(photo) {
-    document.getElementById("detailImage").src = photo.photo_url;
-    document.getElementById("detailCity").textContent = photo.city;
+    const bigCard = addPhotoToWall(photo, "large");
 
+    const dateLabel = document.createElement("div");
+    dateLabel.className = "absolute bottom-3 right-4 mr-2 font-marker text-inkMuted text-sm";
     const date = new Date(photo.created_at);
-    document.getElementById("detailDate").textContent = date.toLocaleString();
+    dateLabel.textContent = date.toLocaleDateString();
+    bigCard.appendChild(dateLabel);
 
+    const container = document.getElementById("detailCardContainer");
+    container.innerHTML = "";
+    container.appendChild(bigCard);
     document.getElementById("detailModal").classList.remove("hidden");
-
 }
-
-document.getElementById("btnCloseDetail").addEventListener("click", function() {
-    document.getElementById("detailModal").classList.add("hidden");
-});
-
-document.getElementById("detailModal").addEventListener("click", function() {
-    if (event.target.id === "detailModal") {
-        document.getElementById("detailModal").classList.add("hidden");
-    }
-})
