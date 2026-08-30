@@ -21,11 +21,13 @@
                     fontFamily: {
                         display: ['Baloo 2', 'sans-serif'],
                         body: ['Poppins', 'sans-serif'],
+                        marker: ['Caveat', 'cursive'],
                     }
                 }
             }
         }
         </script>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
         <style>
             body { font-family: 'Poppins', sans-serif;}
@@ -59,6 +61,8 @@
             <div class="bg-surface border-2 border-inkMuted p-6 w-80">
                 <button id="btnCloseUpload" class="float-right text-ink">✕</button>
                 <h2 class="font-bold text-ink mb-4">upload your pics!</h2>
+                <label for="cityInput" class="block text-sm text-inkMuted mb-1">Where's this from?</label>
+                <input id="cityInput" type="text" placeholder="e.g. Quito, Ecuador" class="w-full border-2 border-inkSoft rounded-lg p-2 mb-4">
                 <label for="photoInput" class="block bg-surface border-2 border-dashed border-inkSoft rounded-lg p-6 text-center text-ink cursor-pointer hover:bg-surfaceAlt mb-4">Press to upload your photos</label>
                 <input id="photoInput" type="file" accept="image/*" multiple class="mb-4 hidden">
                 <button id="btnUpload" class="bg-goldenrod border-2 border-inkMuted text-ink px-4 py-2 rounded w-full">UPLOAD</button>
@@ -103,7 +107,16 @@
             </div>
         </div>
 
-
+        <div id="detailModal" class="hidden fixed inset-0 bg-inkSoft/60 flex items-center justify-center z-50 p-4">
+            <div class="bg-surface border-2 border-inkMuted overflow-hidden flex flex-col sm:flex-row max-w-2xl w-full relative">
+                <button id="btnCloseDetail" class="absolute top-3 right-3 text-ink z-10">✕</button>
+                <img id="detailImage" class="w-full p-3 sm:w-1/2 h-64 sm:h-auto object-cover">
+                <div class="p-6 flex-1">
+                    <h3 id="detailCity" class="font-display text-2xl text-ink mb-2"></h3>
+                    <p id="detailDate" class="text-inkMuted text-sm"></p>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -113,6 +126,7 @@
         <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js"></script>
         <script src="js/config.js"></script>
         <script src="js/wall.js"></script>
+        <script src="js/detail.js"></script>
         <script src="js/upload.js"></script>
     </body>
 </html>

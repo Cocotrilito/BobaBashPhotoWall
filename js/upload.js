@@ -72,9 +72,11 @@ async function uploadCroppedPhotos() {
             continue;
         }; 
         const { data: urlData } = client.storage.from("photos").getPublicUrl(Filename);
+        const citytValue = document.getElementById("cityInput").value || "Somewhere on Earth";
+
 
         const { error: dbError } = await client.from("photowall").insert([
-            {photo_url: urlData.publicUrl, filename: Filename}
+            {photo_url: urlData.publicUrl, filename: Filename, city: citytValue }
         ]);
 
         if (dbError) {

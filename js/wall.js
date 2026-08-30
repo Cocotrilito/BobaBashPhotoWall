@@ -1,8 +1,13 @@
 const wallContainer = document.getElementById("wallContainer");
 
+
+
 function addPhotoToWall(photo) {
     const card = document.createElement("div");
-    card.className = "bg-white p-3 pb-12 shadow-lg relative";
+    card.className = "bg-white p-3 pb-12 shadow-lg relative cursor-pointer";
+    card.addEventListener("click", function() {
+        openDetailModal(photo);
+    });
     const rotation = Math.random() * 8-4;
     card.style.transform = "rotate("+ rotation + "deg)";
 
@@ -30,7 +35,11 @@ function addPhotoToWall(photo) {
     vignette.className = "absolute inset-0 pointer-events-none";
     vignette.style.boxShadow = "inset 0 0 30px 10px rgba(0,0,0,0.35)";
 
+    const cityLabel = document.createElement("div");
+    cityLabel.className = "absolute bottom-2 left-0 right-0 text-center font-marker text-ink text-lg";
+    cityLabel.textContent = photo.city;
 
+    card.appendChild(cityLabel);
     photoWrapper.appendChild(img);
     photoWrapper.appendChild(warmOverlay);
     card.appendChild(grain);
