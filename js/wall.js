@@ -2,7 +2,7 @@ const wallContainer = document.getElementById("wallContainer");
 
 function addPhotoToWall(photo) {
     const card = document.createElement("div");
-    card.className = "bg-white p3 pb-8 shadow-lg relative";
+    card.className = "bg-white p-3 pb-12 shadow-lg relative";
     const rotation = Math.random() * 8-4;
     card.style.transform = "rotate("+ rotation + "deg)";
 
@@ -13,6 +13,11 @@ function addPhotoToWall(photo) {
     warmOverlay.className = "absolute inset-0 pointer-events-none";
     warmOverlay.style.background = "rgba(225, 180, 90, 0.05)";
     warmOverlay.style.mixBlendMode = "overlay";
+
+    const grain = document.createElement("div");
+    grain.className = "absolute inset-0 pointer-events-none opacity-[.23]";
+    grain.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
 
     const img = document.createElement("img");
     img.className = "w-40 sm:w-48 md:w-48 h-40 sm:h-48 md:h-48 object-cover block sepia-[.35] contrast-[1.05] saturate-[.95] brightness-[1.1] opacity-0 scale-95 transition-all duration-700"
@@ -28,6 +33,7 @@ function addPhotoToWall(photo) {
 
     photoWrapper.appendChild(img);
     photoWrapper.appendChild(warmOverlay);
+    card.appendChild(grain);
     photoWrapper.appendChild(vignette);
     card.appendChild(photoWrapper);
     wallContainer.appendChild(card);    

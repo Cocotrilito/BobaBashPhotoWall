@@ -38,13 +38,17 @@ photoInput.addEventListener("change", function() {
 });
 
 document.getElementById("btnConfirmCrop").addEventListener("click", function() {
+    const btnConfirm = document.getElementById("btnConfirmCrop");
+    btnConfirm.disabled = true;
+    
     cropper.getCroppedCanvas({ width: 500, height: 500}).toBlob(function(blob) {
-      croppedBlobs.push(blob)  ;
-      currentFileIndex = currentFileIndex + 1;
+        croppedBlobs.push(blob);
+        currentFileIndex = currentFileIndex + 1;
 
-      if (currentFileIndex < selectedFiles.length) {
+        if (currentFileIndex < selectedFiles.length) {
         openCropperFor(currentFileIndex);
-      } else {
+        btnConfirm.disabled = false;
+        } else {
         document.getElementById("cropModal").classList.add("hidden");
         uploadCroppedPhotos();
       }
