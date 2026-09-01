@@ -96,14 +96,21 @@ function addPhotoToWall(photo, size) {
         cityLabelAndbtnEdit.appendChild(btnEdit);
         card.appendChild(cityLabelAndbtnEdit);
         const editInput = document.createElement("input");
-        editInput.classList.add("hidden");
+        editInput.className = "hidden w-full border-2 border-inkMuted rounded-lg p-2 ";
         editInput.type = "text";
         editInput.value = (photo.city);
         cityLabelAndbtnEdit.appendChild(editInput);
         btnEdit.addEventListener("click", function() {
             editInput.classList.toggle("hidden");
             cityLabel.classList.toggle("hidden");
+        });
+
+        editInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                editInput.blur()
+            }
         })
+        
         editInput.addEventListener("blur", async function() {
             await editPhoto(photo, cityLabel, editInput);
             editInput.classList.add("hidden");
