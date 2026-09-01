@@ -77,7 +77,7 @@ function addPhotoToWall(photo, size) {
     btnEdit.className = "text-inkMuted";
     btnEdit.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>'
     const cityLabel = document.createElement("div");
-    cityLabel.className = "relative bottom-2 left-0 right-0 text-center font-marker text-ink text-lg";
+    cityLabel.className = "relative text-center font-marker text-ink text-lg";
     cityLabel.textContent = photo.city;
 
     const owner = photo.owner_token === deviceToken;
@@ -96,7 +96,7 @@ function addPhotoToWall(photo, size) {
         cityLabelAndbtnEdit.appendChild(btnEdit);
         card.appendChild(cityLabelAndbtnEdit);
         const editInput = document.createElement("input");
-        editInput.className = "hidden w-full border-2 border-inkMuted rounded-lg p-2 ";
+        editInput.className = "hidden border-2 border-inkMuted text-ink text-lg w-32 font-marker rounded-lg p-1 focus:outline-none focus:border-goldenrod hover:bg-surfaceAlt";
         editInput.type = "text";
         editInput.value = (photo.city);
         cityLabelAndbtnEdit.appendChild(editInput);
