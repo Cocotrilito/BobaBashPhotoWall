@@ -16,6 +16,18 @@ async function deletePhoto(photo, card) {
     card.remove();
 }
 
+async function editPhoto(photo, cityLabel, editInput) {
+    const {error: editError} = await client.from("photowall").update({city: editInput.value}).eq("id", photo.id)
+
+    if (editError) {
+        console.error(editError);
+        return;
+    }
+
+    cityLabel.textContent = editInput.value
+    
+}
+
 function addPhotoToWall(photo, size) {
     size = size || "small";
     const dimensions = size === "large" ? "w-80 h-80" : "w-36 sm:w-48 md:w-48 h-40 sm:h-48 md:h-48";
@@ -59,8 +71,13 @@ function addPhotoToWall(photo, size) {
     vignette.className = "absolute inset-0 pointer-events-none";
     vignette.style.boxShadow = "inset 0 0 30px 10px rgba(0,0,0,0.35)";
 
+    const cityLabelAndbtnEdit = document.createElement("div")
+    cityLabelAndbtnEdit.className = "absolute bottom-2 left-0 right-0 flex items-center justify-center gap-2"
+    const btnEdit = document.createElement("button");
+    btnEdit.className = "text-inkMuted";
+    btnEdit.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>'
     const cityLabel = document.createElement("div");
-    cityLabel.className = "absolute bottom-2 left-0 right-0 text-center font-marker text-ink text-lg";
+    cityLabel.className = "relative bottom-2 left-0 right-0 text-center font-marker text-ink text-lg";
     cityLabel.textContent = photo.city;
 
     const owner = photo.owner_token === deviceToken;
@@ -75,15 +92,37 @@ function addPhotoToWall(photo, size) {
             document.getElementById("detailModal").classList.add("hidden");
         });
         card.appendChild(btnDelete);
+        cityLabelAndbtnEdit.appendChild(cityLabel);
+        cityLabelAndbtnEdit.appendChild(btnEdit);
+        card.appendChild(cityLabelAndbtnEdit);
+        const editInput = document.createElement("input");
+        editInput.classList.add("hidden");
+        editInput.type = "text";
+        editInput.value = (photo.city);
+        cityLabelAndbtnEdit.appendChild(editInput);
+        btnEdit.addEventListener("click", function() {
+            editInput.classList.toggle("hidden");
+            cityLabel.classList.toggle("hidden");
+        })
+        editInput.addEventListener("blur", async function() {
+            await editPhoto(photo, cityLabel, editInput);
+            editInput.classList.add("hidden");
+            cityLabel.classList.remove("hidden");
+        });
         
+    } else {
+        cityLabel.className = "absolute bottom-2 left-0 right-0 text-center font-marker text-ink text-lg";
+        card.appendChild(cityLabel);
     }
+
+
 
     photoWrapper.appendChild(img);
     photoWrapper.appendChild(warmOverlay);
     photoWrapper.appendChild(vignette);
     card.appendChild(photoWrapper);
     card.appendChild(grain);
-    card.appendChild(cityLabel);
+
 
     if (size === "small") {
         wallContainer.appendChild(card);
