@@ -76,7 +76,7 @@ async function uploadCroppedPhotos() {
 
 
         const { error: dbError } = await client.from("photowall").insert([
-            {photo_url: urlData.publicUrl, filename: Filename, city: citytValue }
+            {photo_url: urlData.publicUrl, filename: Filename, city: citytValue, owner_token: deviceToken}
         ]);
 
         if (dbError) {
@@ -88,6 +88,7 @@ async function uploadCroppedPhotos() {
 
     }
     btnUpload.disabled = false;
+    document.getElementById("btnConfirmCrop").disabled = false;
     btnUpload.classList.remove("bg-inkSoft");
     btnUpload.classList.add("bg-goldenrod");
     btnUpload.textContent = "Successful Upload!";
