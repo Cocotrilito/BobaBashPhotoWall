@@ -155,7 +155,7 @@ client.channel("photowall_changes_radio1")
     .on("postgres_changes", {event: "UPDATE", schema: "public", table: "photowall"}, function(payload) {
         const card = document.querySelector('[data-photo-id="' + payload.new.id + '"]');
         if (card) {
-            const label = card.querySelector('[data-role="city-label"');
+            const label = card.querySelector('[data-role="city-label"]');
             if (label) {
                 label.textContent = payload.new.city;
             }
