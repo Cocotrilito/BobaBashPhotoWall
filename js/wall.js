@@ -79,6 +79,9 @@ function addPhotoToWall(photo, size) {
     const cityLabel = document.createElement("div");
     cityLabel.className = "relative text-center font-marker text-ink text-lg";
     cityLabel.textContent = photo.city;
+    cityLabel.setAttribute("data-role", "city-label");
+
+
 
     const owner = photo.owner_token === deviceToken;
 
@@ -148,6 +151,15 @@ client.channel("photowall_changes_radio1")
        if (card) {
         card.remove();
        }
+    })
+    .on("postgres_changes", {event: "UPDATE", schema: "public", table: "photowall"}, function(payload) {
+        const card = document.querySelector('[data-photo-id="' + payload.new.id + '"]');
+        if (card) {
+            const label = card.querySelector('[data-role="city-label"');
+            if (label) {
+                label.textContent = payload.new.city;
+            }
+        }
     })
     .subscribe();
 
