@@ -24,7 +24,9 @@ async function editPhoto(photo, cityLabel, editInput) {
         return;
     }
 
-    cityLabel.textContent = editInput.value
+    photo.city = editInput.value;
+    cityLabel.textContent = editInput.value;
+    
     
 }
 
