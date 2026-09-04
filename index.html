@@ -51,7 +51,12 @@
     <body class="bg-surfaceAlt">
         <header class="bg-surface border-b-2 border-inkSoft px-6 py-4 flex justify-between items-center">
             <img src="img/logowordmark.png" alt="Boba Bash" class="h-20 my-2">
-            <span class="font-body text-inkMuted text-2xl">Photo Wall</span>
+            <div class="flex items-right justify-center">
+                <input id="adminEmail" class="border-2 border-inkSoft">
+                <input id="adminPassword" class="border-2 border-inkSoft">
+                <button id="btnAdminLogin" class="border-2 border-inkMuted"></button>
+                <span class="font-body text-inkMuted text-2xl">Photo Wall</span>
+            </div>
         </header>
         <div id="wallContainer" class="p-4 flex flex-wrap gap-4"></div>
 
@@ -120,6 +125,7 @@
         <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js"></script>
         <script src="js/config.js"></script>
         <script src="js/device.js"></script>
+        <script src="js/admin.js"></script>
         <script src="js/wall.js"></script>
         <script src="js/detail.js"></script>
         <script src="js/upload.js"></script>
