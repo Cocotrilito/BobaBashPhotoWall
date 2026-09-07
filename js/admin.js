@@ -19,7 +19,7 @@ async function loginAdmin() {
 document.getElementById("btnAdminLogin").addEventListener("click", loginAdmin);
 
 password.addEventListener("keydown", async function(event) {
-    if (event.key === "enter") {
+    if (event.key === "Enter") {
         loginAdmin();
     }
 })
