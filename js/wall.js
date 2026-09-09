@@ -170,6 +170,9 @@ client.channel("photowall_changes_radio1")
 async function showPhotos() {
     const {data, error} = await client.from("photowall").select("*");
 
+    console.log("data:", data);
+    console.log("error:", error);
+
     if (error) {
         console.error(error);
         return;
