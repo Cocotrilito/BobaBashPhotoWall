@@ -12,7 +12,9 @@ async function loginAdmin() {
         console.error(error);
         return;
     }
-
+    isAdmin = true;
+    wallContainer.innerHTML = "";
+    showPhotos();
     console.log("la mera verdura")
 }
 
