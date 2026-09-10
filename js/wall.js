@@ -1,5 +1,19 @@
 const wallContainer = document.getElementById("wallContainer");
 
+let isAdmin = false;
+
+async function checkAdminStatus() {
+    const {data, error} = await client.auth.getUser();
+
+    if (data && data.user) {
+        isAdmin = true;
+    }
+}
+
+
+
+
+
 async function deletePhoto(photo, card) {
     const {error: dbError } = await client.from("photowall").delete().eq("id", photo.id);
 
@@ -85,7 +99,7 @@ function addPhotoToWall(photo, size) {
 
 
 
-    const owner = photo.owner_token === deviceToken;
+    const owner = photo.owner_token === deviceToken || isAdmin;
 
     if (size === "large" && owner) {
         const btnDelete = document.createElement("button");
@@ -143,6 +157,7 @@ function addPhotoToWall(photo, size) {
     return card;
 }
 
+// realtime
 
 client.channel("photowall_changes_radio1")
     .on("postgres_changes", {event: "INSERT", schema: "public", table: "photowall"}, function(payload) {
@@ -259,4 +274,10 @@ document.getElementById("shareModal").addEventListener("click", function() {
     }
 });
 
-showPhotos();
+
+async function init() {
+    await checkAdminStatus();
+    showPhotos();
+}
+
+init();
