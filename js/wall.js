@@ -221,13 +221,16 @@ document.getElementById("btnCloseDetail").addEventListener("click", function() {
     document.getElementById("detailModal").classList.add("hidden");
 });
 
-document.getElementById("detailModal").addEventListener("click", function() {
-    if (event.target.id === "detailModal") {
-        document.getElementById("detailModal").classList.add("hidden");
-    }
-})
 
 
+document.getElementById("btnOpenAdmin").addEventListener("click", function() {
+    document.getElementById("adminModal").classList.toggle("hidden");
+});
+
+
+document.getElementById("btnCloseAdmin").addEventListener("click", function() {
+    document.getElementById("adminModal").classList.add("hidden");
+});
 
 
 const link = window.location.href
@@ -273,6 +276,19 @@ document.getElementById("shareModal").addEventListener("click", function() {
         document.getElementById("shareModal").classList.add("hidden");
     }
 });
+
+document.getElementById("adminModal").addEventListener("click", function(event) {
+    if (event.target.id === "adminModal") {
+        document.getElementById("adminModal").classList.add("hidden");
+    }
+})
+
+document.getElementById("detailModal").addEventListener("click", function() {
+    if (event.target.id === "detailModal") {
+        document.getElementById("detailModal").classList.add("hidden");
+    }
+});
+
 
 
 async function init() {
