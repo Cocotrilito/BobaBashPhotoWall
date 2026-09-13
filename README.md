@@ -7,16 +7,17 @@
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-## Table of Contents
-- [Features](#features)
-- [Setup for Your Own Event](#setup-for-your-own-event)
-- [The Reason Behind This Project](#the-reason-behind-this-project)
 
 
 # Boba Bash Photo Wall
 
 This is a live photo wall. Everyone at your event can upload their photos, crop tem, and share a wall with every attendee, creating a shared memory togheter. Thanks to realtime sync, new photos appear instantly on everyone's screen.
 </div>
+
+## Table of Contents
+- [Features](#features)
+- [Setup for Your Own Event](#setup-for-your-own-event)
+- [The Reason Behind This Project](#the-reason-behind-this-project)
 
 ## Features
 
