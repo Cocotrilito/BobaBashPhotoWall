@@ -1,6 +1,22 @@
+
+<div align="center">
+    <img src="img/logophotowall.png" alt="Boba Bash Photo Wall" width="200"> 
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+
+## Table of Contents
+- [Features](#features)
+- [Setup for Your Own Event](#setup-for-your-own-event)
+- [The Reason Behind This Project](#the-reason-behind-this-project)
+
+
 # Boba Bash Photo Wall
 
-This is a live photo wall. In short, everyone at your event can upload their photos, crop them, and share a wall with every attendee of your event, creating a shared memory, this has a realtime connection between everyone's phones and the wall.
+This is a live photo wall. Everyone at your event can upload their photos, crop tem, and share a wall with every attendee, creating a shared memory togheter. Thanks to realtime sync, new photos appear instantly on everyone's screen.
+</div>
 
 ## Features
 
@@ -59,25 +75,29 @@ const SUPABASE_KEY = "YOUR_PUBLISHABLE_KEY_HERE";
 ok so now you have most of it except a place to publish it, the easiest way is with github pages!
 
 1. Push your code to a GitHub repository.
-2. Go to **Setings  → Pages** in your repo.
+2. Go to **Settings  → Pages** in your repo.
 3. Under **Source**, select **Deploy from a Branch**, choose your `main` branch and `/ (root)` folder.
 4. Save.... then after a minute your site will be live at `https://yourusername.github.io/your-repo-name/`.
-5. Also you can chek this in your repo **Actions Tab**.
+5. Also you can check this in your repo **Actions Tab**.
 
-### 7. Set Up your admin account (opptional)
+### 7. Set Up your admin account (optional)
 If you want to moderate photos during your event, create a user in **Authentication → Users** in your Supabase dashboard, with **Auto Confirm User** checked. Use that email and password to log in via the lock icon in the header.
 
 
 ## The reason behind this project
 
-This project is being submitted to Darkroom, a YSWS about photography from Hack club. I wanted to make this project because I feel making a project of something that you won't actually use is a waste of a time. In this case I WILL use my project and feel proud of it, instead of making something just for the grants
+This project is being submitted to Darkroom, a YSWS about photography from Hack Club. I wanted to make this project because I feel making a project of something that you won't actually use is a waste of a time. In this case I WILL use my project and feel proud of it, instead of making something just for the grant.
 
-## Special thanks to
+## Special thanks
 
 Thanks to [Trulle1234](https://github.com/Trulle1234) and the [Hack Club](https://hackclub.com) [Darkroom](https://darkroom.hackclub.com) community for making this possible.
 
-## You might also like!
+## You might also like
 
 Check out some of my other projects:
-- [BerserkMod](https://github.com/Cocotrilito/berserkmod) - A Berserk-themed Minecraft mod
+- [BerserkMod](https://github.com/Cocotrilito/berserkmod) - A Berserk themed Minecraft mod
 - [The Branded One](https://github.com/Cocotrilito/The-Branded-one) - An NFC business card
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
